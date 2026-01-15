@@ -124,93 +124,18 @@
 }
 
 .associated-cards {
-    margin-bottom: var(--mlt-sys-margin-11);
-}
+    margin-bottom: 3rem;
 
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--mlt-sys-padding-9);
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
 }
 
 .credit-card-link {
     text-decoration: none;
     display: block;
-    transition: transform 0.3s ease;
-
-    &:hover {
-        transform: translateY(-8px);
-
-        .credit-card.small {
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            filter: brightness(1.1);
-        }
-    }
-}
-
-.credit-card.small {
-    padding: var(--mlt-sys-padding-9);
-    border-radius: var(--mlt-sys-border-radius-6);
-    color: var(--mlt-sys-color-white-1);
-    box-shadow: var(--card-shadow);
-    position: relative;
-    overflow: hidden;
-    min-height: 160px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: -20px;
-        right: -20px;
-        width: 100px;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50%;
-    }
-
-    .credit-card__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-
-        h3 {
-            font-size: var(--mlt-sys-font-size-2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0;
-            opacity: 0.9;
-        }
-    }
-
-    .credit-card__number {
-        font-family: var(--mlt-sys-font-family-title);
-        font-size: var(--mlt-sys-font-size-5);
-        margin: var(--mlt-sys-margin-6) 0;
-        letter-spacing: 2px;
-    }
-
-    &--variant-0 {
-        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-    }
-
-    &--variant-1 {
-        background: linear-gradient(135deg, #064e3b 0%, #10b981 100%);
-    }
-
-    &--variant-2 {
-        background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
-    }
-
-    &--variant-3 {
-        background: linear-gradient(135deg, #78350f 0%, #f59e0b 100%);
-    }
-
-    &--variant-4 {
-        background: linear-gradient(135deg, #451a03 0%, #92400e 100%);
-    }
 }
 
 .table-container {

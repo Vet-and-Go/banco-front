@@ -29,6 +29,20 @@
     gap: var(--header-container-gap);
   }
 
+  &__left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: var(--header-container-gap);
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
   &__logo {
     height: var(--header-logo-size);
     flex-shrink: 0;
@@ -49,7 +63,7 @@
   }
 
   &__slogan {
-    flex: 1;
+    flex: 2;
     text-align: center;
     margin: 0;
     font-size: var(--mlt-sys-font-size-2);
@@ -60,7 +74,6 @@
   }
 
   &__nav {
-    flex: 1;
     display: flex;
     justify-content: flex-end;
   }

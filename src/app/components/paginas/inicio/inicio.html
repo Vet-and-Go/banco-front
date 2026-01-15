@@ -33,21 +33,20 @@
             <div class="cards-grid">
                 @for (card of cards; track card.id) {
                 <a [routerLink]="['/bank/cards', card.id, 'movements']" class="credit-card-link">
-                    <div class="credit-card" [ngClass]="getCardStyle(card.id)">
+                    <div class="credit-card" [ngClass]="creditCardService.getCardStyle(card.id)">
                         <div class="credit-card__header">
                             <h3>Tarjeta Crédito</h3>
-                            <span class="credit-card__logo">VISA</span>
                         </div>
                         <div class="credit-card__chip"></div>
                         <p class="credit-card__number">•••• •••• •••• {{ card.cardNumber | slice:-4 }}</p>
                         <div class="credit-card__footer">
-                            <div class="credit-card__holder">
-                                <label>Titular</label>
-                                <span>{{ card.fullName }}</span>
+                            <div class="credit-card__detail-item">
+                                <span class="credit-card__label">Titular</span>
+                                <span class="credit-card__value">{{ card.fullName }}</span>
                             </div>
-                            <div class="credit-card__expiry">
-                                <label>Vence</label>
-                                <span>{{ card.expirationDate }}</span>
+                            <div class="credit-card__detail-item">
+                                <span class="credit-card__label">Vence</span>
+                                <span class="credit-card__value">{{ card.expirationDate }}</span>
                             </div>
                         </div>
                     </div>

@@ -22,24 +22,12 @@ export class MovementsComponent implements OnInit {
     associatedCards: CreditCard[] = [];
     errorMessage: string = '';
 
-    // Map to store consistent random styles for each card ID
-    private cardStyles = new Map<number, number>();
-
     constructor(
         private transactionService: BankTransactionService,
         private accountService: BankAccountService,
-        private creditCardService: CreditCardService,
+        public creditCardService: CreditCardService,
         private route: ActivatedRoute
     ) { }
-
-    getCardStyle(cardId: number): string {
-        if (!this.cardStyles.has(cardId)) {
-            // Assign a random style index from 0 to 4
-            const randomStyle = Math.floor(Math.random() * 5);
-            this.cardStyles.set(cardId, randomStyle);
-        }
-        return `credit-card--variant-${this.cardStyles.get(cardId)}`;
-    }
 
     ngOnInit(): void {
         console.log('Accounts component initialized');
@@ -61,13 +49,7 @@ export class MovementsComponent implements OnInit {
             next: (account: any) => {
                 console.log('Account loaded:', account);
                 this.currentAccount = account;
-
-                const clientId = account.clientId ||
-                    localStorage.getItem('userId');
-
-                if (clientId) {
-                    this.loadAssociatedCards(Number(clientId), account.id);
-                }
+                this.loadAssociatedCards(account.id);
             },
             error: (err) => {
                 console.error('Error loading account info', err);
@@ -75,13 +57,10 @@ export class MovementsComponent implements OnInit {
         });
     }
 
-    loadAssociatedCards(clientId: number, accountId: number): void {
-        this.creditCardService.getByClientId(clientId).subscribe({
+    loadAssociatedCards(accountId: number): void {
+        this.creditCardService.getByAccountId(accountId).subscribe({
             next: (cards: any[]) => {
-                this.associatedCards = cards.filter((card: any) => {
-                    const cardAccId = card.bankAccount?.id || card.bankAccountId || card.bankAccount;
-                    return Number(cardAccId) === Number(accountId);
-                });
+                this.associatedCards = cards;
             },
             error: (err) => console.error('Error loading associated cards', err)
         });

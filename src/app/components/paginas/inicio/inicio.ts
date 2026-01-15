@@ -22,24 +22,13 @@ export class Inicio implements OnInit {
     errorMessage: string = '';
     clientName: string = '';
 
-    private cardStyles = new Map<number, number>();
-
     constructor(
         private accountService: BankAccountService,
-        private creditCardService: CreditCardService,
+        public creditCardService: CreditCardService,
         private clientService: ClientService,
         public auth: AuthService,
         private router: Router
     ) { }
-
-    getCardStyle(cardId: number): string {
-        if (!this.cardStyles.has(cardId)) {
-            // Assign a random style index from 0 to 4
-            const randomStyle = Math.floor(Math.random() * 5);
-            this.cardStyles.set(cardId, randomStyle);
-        }
-        return `credit-card--variant-${this.cardStyles.get(cardId)}`;
-    }
 
     ngOnInit(): void {
         this.auth.validateSession().subscribe({
