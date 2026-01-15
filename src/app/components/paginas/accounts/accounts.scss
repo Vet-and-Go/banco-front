@@ -1,0 +1,289 @@
+.dashboard {
+    --dashboard-bg-color: var(--mlt-sys-color-primary-10);
+    --dashboard-container-max-width: var(--mlt-sys-width-16);
+    --dashboard-padding: var(--mlt-sys-padding-10);
+
+    --card-bg: var(--mlt-sys-color-white-1);
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --card-border-radius: var(--mlt-sys-border-radius-6);
+    --card-padding: var(--mlt-sys-padding-9);
+
+    --title-color: var(--mlt-sys-color-alternative-6);
+    --title-font-size: var(--mlt-sys-font-size-7);
+    --section-title-size: var(--mlt-sys-font-size-6);
+    --section-margin-bottom: var(--mlt-sys-margin-9);
+
+    background-color: var(--dashboard-bg-color);
+    min-height: calc(100vh - 80px);
+    padding: var(--dashboard-padding) 0;
+    font-family: var(--mlt-sys-font-family-text);
+}
+
+.container {
+    max-width: var(--dashboard-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--mlt-sys-padding-7);
+}
+
+.welcome-title {
+    font-family: var(--mlt-sys-font-family-title);
+    color: var(--title-color);
+    margin-bottom: var(--section-margin-bottom);
+    font-size: var(--title-font-size);
+}
+
+.section-title {
+    color: var(--title-color);
+    font-family: var(--mlt-sys-font-family-title);
+    font-size: var(--section-title-size);
+    margin-bottom: var(--section-margin-bottom);
+    padding-bottom: var(--mlt-sys-padding-4);
+    border-bottom: 2px solid var(--mlt-sys-color-primary-4);
+}
+
+.section-subtitle {
+    font-family: var(--mlt-sys-font-family-title);
+    font-size: var(--mlt-sys-font-size-5);
+    color: var(--title-color);
+    margin-bottom: var(--mlt-sys-margin-8);
+    font-weight: 600;
+}
+
+.error-message {
+    background-color: var(--mlt-sys-color-button-primary-10);
+    color: var(--mlt-sys-color-button-primary-1);
+    border: 1px solid var(--mlt-sys-color-button-primary-8);
+    padding: var(--mlt-sys-padding-7);
+    margin-bottom: var(--section-margin-bottom);
+    border-radius: var(--mlt-sys-border-radius-5);
+    font-weight: 500;
+}
+
+.account-status-card {
+    background: linear-gradient(135deg, var(--mlt-sys-color-alternative-1) 0%, var(--mlt-sys-color-alternative-4) 100%);
+    border-radius: var(--mlt-sys-border-radius-7);
+    padding: var(--mlt-sys-padding-10);
+    color: var(--mlt-sys-color-white-1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: var(--mlt-sys-margin-11);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .account-status-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--mlt-sys-padding-10);
+    }
+
+    .card-type {
+        font-size: var(--mlt-sys-font-size-2);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        opacity: 0.8;
+        margin-bottom: var(--mlt-sys-margin-4);
+        display: block;
+    }
+
+    .iban-display {
+        font-family: var(--mlt-sys-font-family-title);
+        font-size: var(--mlt-sys-font-size-6);
+        margin-bottom: var(--mlt-sys-margin-9);
+        letter-spacing: 1px;
+    }
+
+    .balance-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .balance-label {
+            font-size: var(--mlt-sys-font-size-2);
+            opacity: 0.9;
+            margin-bottom: var(--mlt-sys-margin-2);
+        }
+
+        .balance-amount {
+            font-size: var(--mlt-sys-font-size-10);
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.associated-cards {
+    margin-bottom: var(--mlt-sys-margin-11);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--mlt-sys-padding-9);
+}
+
+.credit-card-link {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-8px);
+
+        .credit-card.small {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+    }
+}
+
+.credit-card.small {
+    padding: var(--mlt-sys-padding-9);
+    border-radius: var(--mlt-sys-border-radius-6);
+    color: var(--mlt-sys-color-white-1);
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+    }
+
+    .credit-card__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        h3 {
+            font-size: var(--mlt-sys-font-size-2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            opacity: 0.9;
+        }
+    }
+
+    .credit-card__number {
+        font-family: var(--mlt-sys-font-family-title);
+        font-size: var(--mlt-sys-font-size-5);
+        margin: var(--mlt-sys-margin-6) 0;
+        letter-spacing: 2px;
+    }
+
+    &--variant-0 {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+
+    &--variant-1 {
+        background: linear-gradient(135deg, #064e3b 0%, #10b981 100%);
+    }
+
+    &--variant-2 {
+        background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%);
+    }
+
+    &--variant-3 {
+        background: linear-gradient(135deg, #78350f 0%, #f59e0b 100%);
+    }
+
+    &--variant-4 {
+        background: linear-gradient(135deg, #451a03 0%, #92400e 100%);
+    }
+}
+
+.table-container {
+    background: var(--card-bg);
+    border-radius: var(--card-border-radius);
+    padding: var(--mlt-sys-padding-7);
+    box-shadow: var(--card-shadow);
+    overflow-x: auto;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        padding: var(--mlt-sys-padding-7);
+        text-align: left;
+        border-bottom: 1px solid var(--mlt-sys-color-primary-9);
+    }
+
+    th {
+        background-color: var(--mlt-sys-color-primary-10);
+        color: var(--title-color);
+        font-weight: 600;
+        font-size: var(--mlt-sys-font-size-2);
+        text-transform: uppercase;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .badge {
+        padding: var(--mlt-sys-padding-2) var(--mlt-sys-padding-3);
+        border-radius: var(--mlt-sys-border-radius-3);
+        font-size: var(--mlt-sys-font-size-1);
+        font-weight: 500;
+        text-transform: uppercase;
+
+        &.deposito,
+        &.credit {
+            background-color: var(--mlt-sys-color-button-secundary-9);
+            color: var(--mlt-sys-color-button-secundary-2);
+        }
+
+        &.retiro,
+        &.pago,
+        &.debit {
+            background-color: var(--mlt-sys-color-button-primary-10);
+            color: var(--mlt-sys-color-button-primary-2);
+        }
+    }
+
+    .amount {
+        font-weight: bold;
+        font-family: monospace;
+        font-size: var(--mlt-sys-font-size-3);
+
+        &.positive {
+            color: var(--mlt-sys-color-button-secundary-4);
+        }
+
+        &.negative {
+            color: var(--mlt-sys-color-button-primary-4);
+        }
+    }
+}

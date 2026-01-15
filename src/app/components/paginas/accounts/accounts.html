@@ -1,0 +1,96 @@
+<main class="dashboard">
+    <div class="container">
+        @if (currentAccount) {
+        <h1 class="welcome-title">Cuenta {{ currentAccount.iban }}</h1>
+        } @else {
+        <h1 class="welcome-title">Todos mis Movimientos</h1>
+        }
+
+        @if (errorMessage) {
+        <div class="error-message">{{ errorMessage }}</div>
+        }
+
+        @if (currentAccount) {
+        <div class="account-status-card">
+            <div class="account-status-header">
+                <div>
+                    <span class="card-type">{{ currentAccount.type || 'Bank Account' }}</span>
+                    <div class="iban-display">{{ currentAccount.iban }}</div>
+                </div>
+                <div class="balance-wrapper">
+                    <span class="balance-label">Saldo disponible</span>
+                    <p class="balance-amount">{{ currentAccount.balance | currency:'EUR' }}</p>
+                </div>
+            </div>
+        </div>
+        }
+
+        @if (currentAccount && associatedCards.length > 0) {
+        <section class="associated-cards">
+            <h3 class="section-subtitle">Tarjetas Asociadas</h3>
+            <div class="cards-grid">
+                @for (card of associatedCards; track card.id) {
+                <a [routerLink]="['/bank/cards', card.id, 'movements']" class="credit-card-link">
+                    <div class="credit-card small" [ngClass]="getCardStyle(card.id)">
+                        <div class="credit-card__header">
+                            <h3>Tarjeta Crédito</h3>
+                        </div>
+                        <p class="credit-card__number">•••• •••• •••• {{ card.cardNumber | slice:-4 }}</p>
+                    </div>
+                </a>
+                }
+            </div>
+        </section>
+        }
+
+        <div class="table-container">
+            <h3 class="section-subtitle">Movimientos</h3>
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Origen</th>
+                        <th>Tipo</th>
+                        <th>Concepto</th>
+                        <th class="text-right">Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (tx of transactions; track tx.id) {
+                    <tr>
+                        <td>{{ tx.date | date:'dd/MM/yyyy HH:mm' }}</td>
+                        <td>
+                            <span class="badge" [style.background-color]="tx.origin === 'CARD' ? '#28a745' : '#6c757d'"
+                                style="color: white;">
+                                {{ tx.origin || 'N/A' }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge" [ngClass]="(tx.type || '').toLowerCase()">
+                                {{ tx.type || 'N/A' }}
+                            </span>
+                        </td>
+                        <td>
+                            {{ tx.concept || '-' }}
+                            @if (tx.cardNumber) {
+                            <div style="font-size: 0.75rem; color: #6c757d;">
+                                💳 •••• {{ tx.cardNumber | slice:-4 }}
+                            </div>
+                            }
+                        </td>
+                        <td class="text-right amount"
+                            [class.negative]="tx.type === 'DEBIT' || tx.type === 'PAGO' || tx.type === 'RETIRO'"
+                            [class.positive]="tx.type === 'CREDIT' || tx.type === 'DEPOSITO'">
+                            {{ tx.amount | currency:'EUR' }}
+                        </td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="5" class="text-center">No hay movimientos registrados.</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

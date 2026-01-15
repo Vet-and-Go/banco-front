@@ -1,0 +1,61 @@
+<main class="dashboard">
+    <div class="container">
+        <h1 class="welcome-title">Bienvenido, {{ clientName }}</h1>
+
+        @if (errorMessage) {
+        <div class="error-message">{{ errorMessage }}</div>
+        }
+
+        <section class="accounts-section">
+            <h2 class="section-title">Mis Cuentas</h2>
+            <div class="accounts-grid">
+                @for (account of accounts; track account.id) {
+                <a [routerLink]="['/bank/accounts', account.id, 'movements']" class="account-card-link">
+                    <div class="account-card">
+                        <div class="card-header">
+                            <h3>Cuenta {{ account.type || 'Standard' }}</h3>
+                        </div>
+                        <p class="iban">{{ account.iban }}</p>
+                        <div class="balance-container">
+                            <span class="label">Saldo disponible</span>
+                            <p class="balance">{{ account.balance | currency:'EUR' }}</p>
+                        </div>
+                    </div>
+                </a>
+                } @empty {
+                <div class="no-data">No tienes cuentas registradas actualmente.</div>
+                }
+            </div>
+        </section>
+
+        <section class="cards-section">
+            <h2 class="section-title">Mis Tarjetas</h2>
+            <div class="cards-grid">
+                @for (card of cards; track card.id) {
+                <a [routerLink]="['/bank/cards', card.id, 'movements']" class="credit-card-link">
+                    <div class="credit-card" [ngClass]="getCardStyle(card.id)">
+                        <div class="credit-card__header">
+                            <h3>Tarjeta Crédito</h3>
+                            <span class="credit-card__logo">VISA</span>
+                        </div>
+                        <div class="credit-card__chip"></div>
+                        <p class="credit-card__number">•••• •••• •••• {{ card.cardNumber | slice:-4 }}</p>
+                        <div class="credit-card__footer">
+                            <div class="credit-card__holder">
+                                <label>Titular</label>
+                                <span>{{ card.fullName }}</span>
+                            </div>
+                            <div class="credit-card__expiry">
+                                <label>Vence</label>
+                                <span>{{ card.expirationDate }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                } @empty {
+                <div class="no-data">No tienes tarjetas de crédito asociadas.</div>
+                }
+            </div>
+        </section>
+    </div>
+</main>
