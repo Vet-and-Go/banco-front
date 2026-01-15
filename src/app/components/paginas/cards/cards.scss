@@ -1,0 +1,161 @@
+.dashboard {
+    --dashboard-bg-color: var(--mlt-sys-color-primary-10);
+    --dashboard-container-max-width: var(--mlt-sys-width-16);
+    --dashboard-padding: var(--mlt-sys-padding-10);
+
+    --card-bg: var(--mlt-sys-color-white-1);
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    --card-border-radius: var(--mlt-sys-border-radius-6);
+    --card-padding: var(--mlt-sys-padding-9);
+
+    --title-color: var(--mlt-sys-color-alternative-6);
+    --title-font-size: var(--mlt-sys-font-size-7);
+    --section-title-size: var(--mlt-sys-font-size-6);
+    --section-margin-bottom: var(--mlt-sys-margin-9);
+
+    background-color: var(--dashboard-bg-color);
+    min-height: calc(100vh - 80px);
+    padding: var(--dashboard-padding) 0;
+    font-family: var(--mlt-sys-font-family-text);
+}
+
+.container {
+    max-width: var(--dashboard-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--mlt-sys-padding-7);
+}
+
+.welcome-title {
+    font-family: var(--mlt-sys-font-family-title);
+    color: var(--title-color);
+    margin-bottom: var(--section-margin-bottom);
+    font-size: var(--title-font-size);
+}
+
+.section-subtitle {
+    font-family: var(--mlt-sys-font-family-title);
+    font-size: var(--mlt-sys-font-size-5);
+    color: var(--title-color);
+    margin-bottom: var(--mlt-sys-margin-8);
+    font-weight: 600;
+}
+
+.error-message {
+    background-color: var(--mlt-sys-color-button-primary-10);
+    color: var(--mlt-sys-color-button-primary-1);
+    border: 1px solid var(--mlt-sys-color-button-primary-8);
+    padding: var(--mlt-sys-padding-7);
+    margin-bottom: var(--section-margin-bottom);
+    border-radius: var(--mlt-sys-border-radius-5);
+    font-weight: 500;
+}
+
+.card-status-container {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border-radius: var(--mlt-sys-border-radius-7);
+    padding: var(--mlt-sys-padding-10);
+    color: var(--mlt-sys-color-white-1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: var(--mlt-sys-margin-11);
+}
+
+.card-status-header {
+    .card-type {
+        font-size: var(--mlt-sys-font-size-2);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        opacity: 0.9;
+        display: block;
+        margin-bottom: var(--mlt-sys-margin-4);
+    }
+
+    .card-number-display {
+        font-size: var(--mlt-sys-font-size-7);
+        font-family: 'Courier New', monospace;
+        letter-spacing: 2px;
+        margin-bottom: var(--mlt-sys-margin-9);
+    }
+}
+
+.card-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--mlt-sys-padding-9);
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+
+        .info-label {
+            font-size: var(--mlt-sys-font-size-2);
+            opacity: 0.8;
+            margin-bottom: var(--mlt-sys-margin-2);
+        }
+
+        .info-value {
+            font-size: var(--mlt-sys-font-size-4);
+            font-weight: 600;
+
+            &.spending {
+                color: #fca5a5;
+                font-size: var(--mlt-sys-font-size-5);
+            }
+        }
+    }
+}
+
+.table-container {
+    background: var(--card-bg);
+    border-radius: var(--card-border-radius);
+    padding: var(--mlt-sys-padding-7);
+    box-shadow: var(--card-shadow);
+    overflow-x: auto;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        padding: var(--mlt-sys-padding-7);
+        text-align: left;
+        border-bottom: 1px solid var(--mlt-sys-color-primary-9);
+    }
+
+    th {
+        background-color: var(--mlt-sys-color-primary-10);
+        color: var(--title-color);
+        font-weight: 600;
+        font-size: var(--mlt-sys-font-size-2);
+        text-transform: uppercase;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-center {
+        text-align: center;
+        color: var(--mlt-sys-color-white-5);
+        padding: var(--mlt-sys-padding-10);
+    }
+
+    .amount {
+        font-weight: bold;
+        font-family: monospace;
+        font-size: var(--mlt-sys-font-size-3);
+
+        &.positive {
+            color: var(--mlt-sys-color-button-secundary-4);
+        }
+
+        &.negative {
+            color: var(--mlt-sys-color-button-primary-4);
+        }
+    }
+}

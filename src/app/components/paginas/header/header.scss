@@ -1,0 +1,161 @@
+.header {
+  --header-color-primary: var(--mlt-sys-color-alternative-1);
+  --header-color-letra: var(--mlt-sys-color-primary-10);
+  --header-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --header-container-max-width: var(--mlt-sys-width-16);
+  --header-container-padding: var(--mlt-sys-padding-7) var(--mlt-sys-padding-10);
+  --header-container-gap: var(--mlt-sys-padding-7);
+  --header-logo-size: var(--mlt-sys-width-7);
+  --header-title-font-size: var(--mlt-sys-font-size-6);
+  --header-font-family-title: var(--mlt-sys-font-family-title);
+  --header-font-family-text: var(--mlt-sys-font-family-text);
+  --header-user-border-color: rgba(0, 0, 0, 0.1);
+
+  background-color: var(--header-color-primary);
+  color: var(--header-color-letra);
+  padding: 0;
+  box-shadow: var(--header-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  &__container {
+    max-width: var(--header-container-max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--header-container-padding);
+    gap: var(--header-container-gap);
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: var(--header-container-gap);
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  &__logo {
+    height: var(--header-logo-size);
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+      font-size: var(--header-title-font-size);
+      font-weight: 600;
+      color: var(--header-color-letra);
+      font-family: var(--header-font-family-title);
+    }
+  }
+
+  &__slogan {
+    flex: 2;
+    text-align: center;
+    margin: 0;
+    font-size: var(--mlt-sys-font-size-2);
+    color: var(--mlt-sys-color-alternative-9);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__user {
+    --user-gap: var(--mlt-sys-padding-7);
+    --user-margin-left: var(--mlt-sys-margin-9);
+    --user-padding-left: var(--mlt-sys-padding-9);
+
+    display: flex;
+    align-items: center;
+    gap: var(--user-gap);
+    margin-left: var(--user-margin-left);
+    padding-left: var(--user-padding-left);
+    border-left: 1px solid var(--header-user-border-color);
+  }
+
+  &__username {
+    --username-font-size: var(--mlt-sys-font-size-2);
+    --username-font-weight: 500;
+    --username-color: var(--mlt-sys-color-alternative-10);
+
+
+    font-size: var(--username-font-size);
+    font-weight: var(--username-font-weight);
+    color: var(--username-color);
+    font-family: var(--header-font-family-text);
+  }
+
+  &__logout {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.nav {
+  --nav-list-gap: var(--mlt-sys-padding-10);
+  --nav-link-font-size: var(--mlt-sys-font-size-3);
+  --nav-link-padding: var(--mlt-sys-padding-4) var(--mlt-sys-padding-7);
+  --nav-link-border-radius: var(--mlt-sys-border-radius-3);
+  --nav-link-hover-background: rgba(255, 255, 255, 0.1);
+  --nav-font-family: var(--mlt-sys-font-family-text);
+  --nav-link-color: var(--mlt-sys-color-alternative-10);
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: var(--nav-list-gap);
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    font-size: var(--nav-link-font-size);
+    padding: var(--nav-link-padding);
+    border-radius: var(--nav-link-border-radius);
+    transition: all 0.3s ease;
+    display: block;
+    font-family: var(--nav-font-family);
+    white-space: nowrap;
+
+    &:hover {
+      background-color: var(--nav-link-hover-background);
+      transform: translateY(-2px);
+    }
+
+    &.active {
+      color: var(--nav-link-color);
+    }
+  }
+}

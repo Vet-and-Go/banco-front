@@ -1,0 +1,69 @@
+<main class="dashboard">
+    <div class="container">
+        <h1 class="welcome-title">Movimientos de la Tarjeta</h1>
+
+        @if (currentCard) {
+        <div class="card-status-container">
+            <div class="card-status-header">
+                <div>
+                    <span class="card-type">Tarjeta de Crédito</span>
+                    <div class="card-number-display">{{ currentCard.cardNumber }}</div>
+                </div>
+                <div class="card-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Titular</span>
+                        <span class="info-value">{{ currentCard.fullName }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Caducidad</span>
+                        <span class="info-value">{{ currentCard.expirationDate }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Gasto Últimos 30 días</span>
+                        <span class="info-value spending">{{ monthlySpending | currency:'EUR' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+        @if (errorMessage) {
+        <div class="error-message">{{ errorMessage }}</div>
+        }
+
+        <div class="table-container">
+            <h3 class="section-subtitle">Movimientos</h3>
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Concepto</th>
+                        <th class="text-right">Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (tx of transactions; track tx.id) {
+                    <tr>
+                        <td>{{ tx.date | date:'dd/MM/yyyy HH:mm' }}</td>
+                        <td>
+                            {{ tx.concept || 'Card Transaction' }}
+                            @if (tx.cardNumber) {
+                            <div style="font-size: 0.75rem; color: #6c757d;">
+                                💳 •••• {{ tx.cardNumber | slice:-4 }}
+                            </div>
+                            }
+                        </td>
+                        <td class="text-right amount negative">
+                            {{ (tx.amount > 0 ? -tx.amount : tx.amount) | currency:'EUR' }}
+                        </td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                        <td colspan="3" class="text-center">No hay movimientos registrados.</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

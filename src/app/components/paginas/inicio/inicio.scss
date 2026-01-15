@@ -1,0 +1,115 @@
+.dashboard {
+    --dashboard-bg-color: var(--mlt-sys-color-primary-10, #f8fafc);
+    --dashboard-container-max-width: var(--mlt-sys-width-16, 1200px);
+    --dashboard-padding: var(--mlt-sys-padding-10, 2rem);
+
+    background-color: var(--dashboard-bg-color);
+    min-height: calc(100vh - 80px);
+    padding: var(--dashboard-padding) 0;
+}
+
+.container {
+    max-width: var(--dashboard-container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--mlt-sys-padding-7, 1rem);
+}
+
+.welcome-title {
+    font-family: var(--mlt-sys-font-family-title, sans-serif);
+    color: var(--mlt-sys-color-alternative-6, #1e293b);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.section-title {
+    color: var(--mlt-sys-color-alternative-6, #1e293b);
+    font-family: var(--mlt-sys-font-family-title, sans-serif);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--mlt-sys-color-primary-4, #e2e8f0);
+}
+
+.accounts-grid,
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.account-card-link,
+.credit-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.account-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header h3 {
+        margin: 0;
+        color: #64748b;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        font-family: inherit;
+        letter-spacing: 0.5px;
+    }
+
+    .iban {
+        font-family: monospace;
+        font-size: 1.125rem;
+        color: #1e293b;
+        margin: 1.5rem 0;
+    }
+
+    .balance-container {
+        margin-top: auto;
+
+        .label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .balance {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin: 0;
+        }
+    }
+}
+
+.no-data {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 12px;
+    color: #64748b;
+    border: 2px dashed #cbd5e1;
+}
+
+.error-message {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+}

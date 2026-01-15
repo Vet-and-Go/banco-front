@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="header__container">
+    <div class="header__left">
+      <a routerLink="/bank"><img src="/img/logobanco.png" alt="GoBank" class="header__logo"></a>
+      <div class="header__title">
+        <a routerLink="/bank">
+          <h1>GoBank</h1>
+        </a>
+      </div>
+    </div>
+
+    <p class="header__slogan">La tranquilidad de estar en buenas manos</p>
+
+    <div class="header__right">
+      @if (router.url !== '/bank/login') {
+      <nav class="header__nav nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a routerLink="/bank" class="nav__link">
+              Inicio
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header__user">
+        <span class="header__username">{{ auth.getUsername() }}</span>
+        <img class="header__logout" src="/img/logout.png" alt="Cerrar sesión" (click)="logout()">
+      </div>
+      }
+    </div>
+  </div>
+</header>

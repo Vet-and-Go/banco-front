@@ -1,0 +1,136 @@
+.credit-card {
+    --card-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    --card-text-color: white;
+    --card-label-color: rgba(255, 255, 255, 0.7);
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    --card-border-radius: 16px;
+
+    background: var(--card-bg);
+    color: var(--card-text-color);
+    border-radius: var(--card-border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20%;
+        left: -10%;
+        width: 140%;
+        height: 140%;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1;
+
+        h3 {
+            color: var(--card-text-color);
+            opacity: 0.9;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+    }
+
+    &__logo {
+        display: none;
+    }
+
+
+    &__number {
+        color: var(--card-text-color);
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        margin: 0.8rem 0;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        z-index: 1;
+    }
+
+    &__detail-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__label {
+        color: var(--card-label-color);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    &__value {
+        color: var(--card-text-color);
+        font-size: 1rem;
+        font-weight: 500;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        line-height: 1.2;
+    }
+
+    /* Modifiers / Variants */
+    &--variant-0 {
+        --card-bg: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    }
+
+    &--variant-1 {
+        --card-bg: linear-gradient(135deg, #DAA520 0%, #FFD700 100%);
+
+        .credit-card__label {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .credit-card__value,
+        .credit-card__header h3,
+        .credit-card__number,
+        .credit-card__logo {
+            color: #333;
+            text-shadow: none;
+        }
+    }
+
+    &--variant-2 {
+        --card-bg: linear-gradient(135deg, #232526 0%, #414345 100%);
+    }
+
+    &--variant-3 {
+        --card-bg: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    }
+
+    &--variant-4 {
+        --card-bg: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    }
+
+    /* Interaction */
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+}
