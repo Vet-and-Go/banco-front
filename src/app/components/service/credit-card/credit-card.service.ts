@@ -7,7 +7,7 @@ import { CreditCard } from '../../../Models/credit-card';
   providedIn: 'root'
 })
 export class CreditCardService {
-  private baseUrl = 'vetandgo-bank-front.preproducciondaw.cip.fpmislata.com/api/credit-cards';
+  private baseUrl = '/api/credit-cards';
 
   constructor(private http: HttpClient) { }
 

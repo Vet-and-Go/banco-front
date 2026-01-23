@@ -6,7 +6,7 @@ import { Client } from '../../../Models/client';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly baseUrl: string = 'vetandgo-bank-front.preproducciondaw.cip.fpmislata.com/api/clients/auth/';
+  private readonly baseUrl: string = '/api/clients/auth/';
   currentUser: Client | null = null;
   private _username: string | null = null;
 

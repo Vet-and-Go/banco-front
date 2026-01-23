@@ -7,7 +7,7 @@ import { BankTransaction } from '../../../Models/bank-transaction';
   providedIn: 'root'
 })
 export class BankTransactionService {
-  private baseUrl = 'vetandgo-bank-front.preproducciondaw.cip.fpmislata.com/api/bank-transactions';
+  private baseUrl = '/api/bank-transactions';
 
   constructor(private http: HttpClient) { }
 
