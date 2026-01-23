@@ -7,7 +7,7 @@ import { BankAccount, BankAccountOperation } from '../../../Models/bank-account'
   providedIn: 'root'
 })
 export class BankAccountService {
-  private baseUrl = 'vetandgo-bank-back.preproducciondaw.cip.fpmislata.com/api/bank-accounts';
+  private baseUrl = 'api/bank-accounts';
 
   constructor(private http: HttpClient) { }
 

@@ -10,7 +10,7 @@ import { Client } from '../../../Models/client';
   providedIn: 'root'
 })
 export class ClientService {
-  private baseUrl = 'vetandgo-bank-back.preproducciondaw.cip.fpmislata.com/api/clients';
+  private baseUrl = 'api/clients';
 
   constructor(private http: HttpClient) { }
 
