@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BankAccount, BankAccountOperation } from '../../../Models/bank-account';
 import { Http } from '../../../core/services/http/http.service';
@@ -7,7 +8,7 @@ import { Http } from '../../../core/services/http/http.service';
   providedIn: 'root'
 })
 export class BankAccountService {
-  constructor(private http: Http) { }
+  constructor(private http: Http, private httpClient: HttpClient) { }
 
   getAll(): Observable<BankAccount[]> {
     return this.http.getAll<BankAccount>('bank-accounts');
@@ -18,11 +19,11 @@ export class BankAccountService {
   }
 
   deposit(operation: BankAccountOperation): Observable<void> {
-    return this.http.create<void>('bank-accounts/deposit', operation);
+    return this.httpClient.post<void>('/bank-accounts/deposit', operation);
   }
 
   withdraw(operation: BankAccountOperation): Observable<void> {
-    return this.http.create<void>('bank-accounts/withdraw', operation);
+    return this.httpClient.post<void>('/bank-accounts/withdraw', operation);
   }
 
   getByClientId(clientId: number): Observable<BankAccount[]> {
