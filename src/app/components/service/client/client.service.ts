@@ -10,7 +10,7 @@ import { Client } from '../../../Models/client';
   providedIn: 'root'
 })
 export class ClientService {
-  private baseUrl = '/api/clients';
+  private baseUrl = '/clients';
 
   constructor(private http: HttpClient) { }
 
