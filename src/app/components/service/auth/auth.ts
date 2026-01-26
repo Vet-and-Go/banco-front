@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, tap, shareReplay, of, catchError } from 'rxjs';
 import { LoginRequest, LoginResponse } from '../../../Models/auth';
 import { Client } from '../../../Models/client';
+import { Http } from '../../../core/services/http/http.service';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -10,11 +11,11 @@ export class AuthService {
   currentUser: Client | null = null;
   private _username: string | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
     console.log('Login attempt with:', credentials.username);
-    return this.http.post<LoginResponse>(`${this.baseUrl}login`, credentials).pipe(
+    return this.http.create<LoginResponse>('clients/auth/login', credentials).pipe(
       tap(res => {
         console.log('Login response:', res);
         localStorage.setItem('token', res.token);
@@ -27,7 +28,7 @@ export class AuthService {
 
   logout(): Observable<void> {
     const username = this.getUsername();
-    return this.http.post<void>(`${this.baseUrl}logout`, { username }).pipe(
+    return this.http.create<void>('clients/auth/logout', { username }).pipe(
       tap(() => this.clearSession()),
       catchError(() => {
         this.clearSession();
@@ -53,9 +54,7 @@ export class AuthService {
 
     if (!this.session$) {
       // Sending token as raw string body as requested
-      this.session$ = this.http.post<Client>(`${this.baseUrl}session`, token, {
-        headers: { 'Content-Type': 'text/plain' }
-      }).pipe(
+      this.session$ = this.http.create<Client>('clients/auth/session', token).pipe(
         tap(client => {
           this.currentUser = client;
           this._username = client.login;

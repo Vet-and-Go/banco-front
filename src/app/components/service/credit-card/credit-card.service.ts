@@ -1,38 +1,36 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CreditCard } from '../../../Models/credit-card';
+import { Http } from '../../../core/services/http/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreditCardService {
-  private baseUrl = '/credit-cards';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
   getAll(): Observable<CreditCard[]> {
-    return this.http.get<CreditCard[]>(this.baseUrl);
+    return this.http.getAll<CreditCard>('credit-cards');
   }
 
   getById(id: number): Observable<CreditCard> {
-    return this.http.get<CreditCard>(`${this.baseUrl}/${id}`);
+    return this.http.getById<CreditCard>(`credit-cards/${id}`);
   }
 
   getByClientId(clientId: number): Observable<CreditCard[]> {
-    return this.http.get<CreditCard[]>(`${this.baseUrl}/client/${clientId}`);
+    return this.http.getAll<CreditCard>(`credit-cards/client/${clientId}`);
   }
 
   getByAccountId(bankAccountId: number): Observable<CreditCard[]> {
-    return this.http.get<CreditCard[]>(`${this.baseUrl}/account/${bankAccountId}`);
+    return this.http.getAll<CreditCard>(`credit-cards/account/${bankAccountId}`);
   }
 
   getTransactions(cardId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/transactions/${cardId}`);
+    return this.http.getAll<any>(`credit-cards/transactions/${cardId}`);
   }
 
   getSpending(cardId: number): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/spending/${cardId}`);
+    return this.http.getById<number>(`credit-cards/spending/${cardId}`);
   }
 
   private cardStyles = new Map<number, string>();

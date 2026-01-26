@@ -1,25 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-
-
-
 import { Client } from '../../../Models/client';
+import { Http } from '../../../core/services/http/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-  private baseUrl = '/clients';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
   getAll(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.baseUrl);
+    return this.http.getAll<Client>('clients');
   }
 
   getById(id: number): Observable<Client> {
-    return this.http.get<Client>(`${this.baseUrl}/${id}`);
+    return this.http.getById<Client>(`clients/${id}`);
   }
 
   getByUsername(username: string): Observable<Client> {
