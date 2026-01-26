@@ -16,8 +16,10 @@ export class Http {
     return this.http.get<T>(`${this.baseUrl}/${route}`);
   }
 
-  create<T>(route: string, newObject: T): Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}/${route}`, newObject);
+  create<T>(route: string, newObject: T): Observable<T>;
+  create<T, R>(route: string, newObject: T): Observable<R>;
+  create<T, R = T>(route: string, newObject: T): Observable<R> {
+    return this.http.post<R>(`${this.baseUrl}/${route}`, newObject);
   }
 
   update<T>(route: string, newObject: T): Observable<T> {
